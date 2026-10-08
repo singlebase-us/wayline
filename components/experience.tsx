@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { scenes } from "@/lib/content";
+import { Entrance } from "@/components/entrance";
 
 export function Experience({ children }: { children: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
@@ -13,6 +14,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
   const [dragging, setDragging] = useState(false);
 
   const select = useCallback((next: number) => {
+    if (root.current?.dataset.intro !== "complete") return;
     const clamped = Math.max(0, Math.min(scenes.length - 1, next));
     if (clamped === current.current) return;
     root.current?.style.setProperty(
@@ -91,6 +93,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
       }
     };
     const onDown = (event: PointerEvent) => {
+      if (element.dataset.intro !== "complete") return;
       if (
         event.button !== 0 ||
         (event.target as HTMLElement).closest(
@@ -102,6 +105,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
       didDrag = false;
     };
     const onMove = (event: PointerEvent) => {
+      if (element.dataset.intro !== "complete") return;
       if (
         start &&
         Math.hypot(event.clientX - start.x, event.clientY - start.y) > 12
@@ -226,7 +230,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
         link.tabIndex = i === index ? 0 : -1;
       });
     });
-    if (reducedMotion.current) return;
+    if (reducedMotion.current || element.dataset.intro !== "complete") return;
     const context = gsap.context(() => {
       gsap.fromTo(
         sections[index].querySelectorAll(
@@ -296,11 +300,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
         <span>↗</span>
       </div>
       <div className="page-wipe" aria-hidden="true" />
-      <div className="intro-curtain" aria-hidden="true">
-        <span>WAYLINE</span>
-        <small>OPERATIONAL WORKFLOW SYSTEMS</small>
-        <i />
-      </div>
+      <Entrance />
     </div>
   );
 }
