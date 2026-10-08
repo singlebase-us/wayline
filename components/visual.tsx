@@ -101,9 +101,7 @@ export function Visual({ kind }: { kind: string }) {
     <div className="flow-visual">
       <div className="diagram-top">
         <span>WAYLINE</span>
-        <span>
-          THE EXECUTION LAYER <i />
-        </span>
+        <span>THE EXECUTION LAYER</span>
       </div>
       <div className="flow-intro">
         Different systems.
@@ -145,7 +143,6 @@ export function Visual({ kind }: { kind: string }) {
           <strong>Orchestrated. Not improvised.</strong>
           <span>CAPTURE · VALIDATE · EXECUTE</span>
         </div>
-        <span className="engine-pulse" />
       </div>
       <div className="flow-outcomes">
         <span>

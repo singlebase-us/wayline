@@ -259,14 +259,6 @@ a:focus-visible {
   font-size: 13px;
   letter-spacing: 3px;
 }
-.diagram-top i {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  background: #5a7255;
-  border-radius: 100%;
-  margin-left: 4px;
-}
 .flow-intro {
   font-family: var(--serif);
   font-size: clamp(23px, 2.3vw, 39px);
@@ -343,14 +335,6 @@ a:focus-visible {
   font-size: 8px;
   letter-spacing: 1px;
   margin-top: 7px;
-}
-.engine-pulse {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #c5dba0;
-  margin-left: auto;
-  box-shadow: 0 0 0 4px #c5dba020;
 }
 .flow-outcomes {
   display: flex;
