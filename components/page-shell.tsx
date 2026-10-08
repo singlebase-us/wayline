@@ -20,7 +20,6 @@ export function PageShell({
           WAYLINE
           <span className="brand-line" />
         </a>
-        <span>PRODUCT ENGINEERING FOR REAL-WORLD OPERATIONS</span>
         <a href="mailto:contact@singlebase.co">CONTACT@SINGLEBASE.CO ↗</a>
       </footer>
     </div>

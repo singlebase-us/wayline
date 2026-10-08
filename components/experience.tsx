@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { scenes } from "@/lib/content";
 import { Entrance } from "@/components/entrance";
+import { GalleryPreview } from "@/components/gallery-preview";
 
 export function Experience({ children }: { children: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
@@ -97,7 +98,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
       if (
         event.button !== 0 ||
         (event.target as HTMLElement).closest(
-          "button,.site-header,.text-link,.gallery-map",
+          "button,.site-header,.text-link,.gallery-preview",
         )
       )
         return;
@@ -267,33 +268,9 @@ export function Experience({ children }: { children: React.ReactNode }) {
           </button>
         ))}
       </nav>
-      <nav className="gallery-map" aria-label="Workflow overview">
-        {scenes.map((scene, i) => (
-          <button
-            key={scene.id}
-            aria-label={`Go to ${scene.label}`}
-            aria-current={i === index ? "step" : undefined}
-            onClick={() => select(i)}
-            style={{ "--tile": scene.color } as React.CSSProperties}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        ))}
-        <span
-          className="map-outline"
-          style={{ transform: `translateX(${index * 100}%)` }}
-        />
-      </nav>
-      <div className="explore-hint">
-        <span className="scroll-line" />
-        <span>SCROLL OR DRAG TO EXPLORE</span>
-      </div>
-      <span className="scene-counter" aria-live="polite" aria-atomic="true">
-        {String(index + 1).padStart(2, "0")}
-        <span> / 06</span>
-        <span className="sr-only"> — {scenes[index].label}</span>
+      <GalleryPreview index={index} />
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {scenes[index].label}
       </span>
       <div className="gallery-cursor" aria-hidden="true">
         {dragging ? "DRAG" : "VIEW"}

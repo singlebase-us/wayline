@@ -21,6 +21,8 @@ The card snapshots contain WAYLINE content only. After editing `components/visua
 
 ## Lifecycle and accessibility
 
+The lower-left project preview now uses a single two-sided card instead of six colored navigation blocks. It follows the reference's 267:157 ratio, X-axis half-turn, 1100ms cubic-bezier(.6, 0, .18, 1) timing, and .78 mid-flip scale. It uses the existing WAYLINE card snapshots, follows the selected scene, links to that scene's detail page, and disables movement for reduced motion. Hover adds a small tilt and light highlight. The right-hand navigation remains available for selecting any scene.
+
 The loader is progressive enhancement: HTML headings, copy and links remain in the static export. Intro is skipped for reduced motion, short viewports, and noninitial scene hashes. Escape or the keyboard-accessible skip button exits it. Slow or failed textures, unavailable WebGL, context loss, resize, and leaving the tab also complete immediately. Gallery input is locked only while the overlay is active; buffers, textures, shaders, frame callbacks and listeners are cleaned up.
 
 Run `npm run typecheck`, `npm run build`, `node scripts/check-export.mjs`, then `npm run check:intro -- http://localhost:3000` for browser verification. The browser check covers rendered frames, navigation, mobile, reduced motion, unavailable WebGL, context loss, slow assets, resize and no JavaScript.

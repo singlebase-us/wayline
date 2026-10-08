@@ -75,11 +75,6 @@ export default function Home() {
         ))}
       </main>
       <div className="scene-footer">
-        <span>
-          PRODUCT ENGINEERING
-          <br />
-          FOR REAL-WORLD OPERATIONS
-        </span>
         <span className="footer-signoff">LESS FRICTION. MORE FORWARD.</span>
       </div>
     </Experience>

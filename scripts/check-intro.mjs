@@ -89,9 +89,13 @@ try {
       );
       await page.keyboard.press("ArrowDown");
       assert.equal(await active(page), "distribution");
-      await page.locator(".gallery-map button").first().click();
-      await page.waitForTimeout(1000);
-      await page.locator(".scene.is-active .visual-link").click();
+      assert.equal(
+        await page.locator(".gallery-preview").getAttribute("href"),
+        "/workflows/distribution/",
+      );
+      await page.locator(".scene-nav button").first().click();
+      await page.waitForTimeout(1150);
+      await page.locator(".gallery-preview").click();
       await page.waitForURL("**/about/");
       assert.equal(await page.locator("h1").count(), 1);
     },
@@ -131,13 +135,12 @@ try {
   );
   await Promise.all([
     check("reduced motion", { reducedMotion: "reduce" }, async (page) => {
-      let textureRequests = 0;
-      page.on("request", (r) => {
-        if (r.url().includes("/intro/")) textureRequests++;
-      });
       await page.goto(baseURL);
       await ready(page);
-      assert.equal(textureRequests, 0);
+      assert.equal(
+        await page.locator(".experience").getAttribute("data-intro-renderer"),
+        null,
+      );
       await page.keyboard.press("ArrowDown");
       assert.equal(await active(page), "insurance");
     }),
