@@ -18,7 +18,6 @@ export function Entrance() {
           <span className="entrance-outline">WAYLINE</span>
           <span className="entrance-fill">WAYLINE</span>
         </div>
-        <p className="entrance-subtitle">OPERATIONAL WORKFLOW SYSTEMS</p>
         <p className="entrance-note">
           Less friction. More forward.
           <br />

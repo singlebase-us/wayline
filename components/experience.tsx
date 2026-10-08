@@ -235,7 +235,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
     const context = gsap.context(() => {
       gsap.fromTo(
         sections[index].querySelectorAll(
-          ".eyebrow,.title-line,.scene-description,.text-link",
+          ".title-line,.scene-description,.text-link",
         ),
         { y: 28, opacity: 0 },
         {

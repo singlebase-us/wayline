@@ -3,7 +3,6 @@ export const scenes = [
   {
     id: "overview",
     number: "01",
-    eyebrow: "OPERATIONAL WORKFLOW SYSTEMS",
     title: ["Less busywork.", "More flow."],
     description:
       "The operational last mile should not run on copy-and-paste. We connect the systems. You move the work forward.",
@@ -17,7 +16,6 @@ export const scenes = [
   {
     id: "insurance",
     number: "02",
-    eyebrow: "INDEPENDENT INSURANCE",
     title: ["Renewals.", "Minus the chase."],
     description:
       "From renewal information to carrier portals. Keep the work moving, with licensed people in control of the decisions.",
@@ -31,7 +29,6 @@ export const scenes = [
   {
     id: "distribution",
     number: "03",
-    eyebrow: "WHOLESALE DISTRIBUTION",
     title: ["Orders in.", "Busywork out."],
     description:
       "Turn email and PDF orders into validated, ready-to-enter records. Catch missing details before they become costly mistakes.",
@@ -45,7 +42,6 @@ export const scenes = [
   {
     id: "property",
     number: "04",
-    eyebrow: "PROPERTY OPERATIONS",
     title: ["Every invoice.", "In its place."],
     description:
       "Connect invoices, work orders, approvals, and accounting preparation. One traceable path from incoming to complete.",
@@ -59,7 +55,6 @@ export const scenes = [
   {
     id: "freight",
     number: "05",
-    eyebrow: "FREIGHT BROKERAGE",
     title: ["Delivered.", "Documented.", "Done."],
     description:
       "Bring proof of delivery, shipment records, and billing packets together. Close the gap between the delivery and the invoice.",
@@ -73,7 +68,6 @@ export const scenes = [
   {
     id: "pilot",
     number: "06",
-    eyebrow: "ONE WORKFLOW. REAL EVIDENCE.",
     title: ["Start narrow.", "Make it matter."],
     description:
       "Bring the workflow that makes your best people babysit software. We’ll find a focused pilot and measure what gets better.",

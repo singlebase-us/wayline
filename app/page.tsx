@@ -35,7 +35,6 @@ export default function Home() {
             aria-labelledby={`title-${scene.id}`}
           >
             <div className="scene-copy">
-              <p className="eyebrow">{scene.eyebrow}</p>
               {i === 0 ? (
                 <h1 id={`title-${scene.id}`}>
                   {scene.title.map((line) => (

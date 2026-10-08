@@ -62,7 +62,6 @@ export default async function Workflow({ params }: Props) {
         className="workflow-hero"
         style={{ "--workflow-color": item.color } as React.CSSProperties}
       >
-        <p className="eyebrow">{item.industry}</p>
         <h1>{item.headline}</h1>
         <p>{item.intro}</p>
         <span className="workflow-scroll">

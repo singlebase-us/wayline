@@ -50,7 +50,6 @@ export default function About() {
           <Visual kind="flow" />
         </div>
         <div className="about-heading">
-          <p className="eyebrow">HELLO. WE’RE WAYLINE.</p>
           <h1>
             We connect
             <br />

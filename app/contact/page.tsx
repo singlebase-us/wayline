@@ -22,7 +22,6 @@ export default function Contact() {
   return (
     <PageShell>
       <section className="contact-hero">
-        <p className="eyebrow">A GOOD FIRST CONVERSATION</p>
         <h1>
           Show us the work
           <br />
