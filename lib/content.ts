@@ -1,6 +1,4 @@
 export const email = "contact@singlebase.co";
-// Background/secondary pairs from robin-noguier.com: Fun, Esperanto, Blurr,
-// Ueno, Airbnb, and SnickSnack. Text ink is independent for legibility.
 export const scenes = [
   {
     id: "overview",
@@ -11,7 +9,6 @@ export const scenes = [
     action: "MEET YOUR EXECUTION LAYER",
     href: "/about/",
     color: "#3d6681",
-    secondary: "#d5dedd",
     ink: "#e2e7dc",
     visual: "flow",
     label: "The execution layer",
@@ -24,9 +21,8 @@ export const scenes = [
       "From renewal information to carrier portals. Keep the work moving, with licensed people in control of the decisions.",
     action: "EXPLORE THE WORKFLOW",
     href: "/workflows/insurance/",
-    color: "#f5f8ff",
-    secondary: "#fe3448",
-    ink: "#b72439",
+    color: "#6c556d",
+    ink: "#efe4e0",
     visual: "insurance",
     label: "Renewals & carrier portals",
   },
@@ -38,9 +34,8 @@ export const scenes = [
       "Turn email and PDF orders into validated, ready-to-enter records. Catch missing details before they become costly mistakes.",
     action: "EXPLORE THE WORKFLOW",
     href: "/workflows/distribution/",
-    color: "#c2375a",
-    secondary: "#d2d2d2",
-    ink: "#f4eded",
+    color: "#af3f52",
+    ink: "#f3dfd4",
     visual: "warehouse",
     label: "Email & PDF orders to ERP",
   },
@@ -52,9 +47,8 @@ export const scenes = [
       "Connect invoices, work orders, approvals, and accounting preparation. One traceable path from incoming to complete.",
     action: "EXPLORE THE WORKFLOW",
     href: "/workflows/property/",
-    color: "#7ab9e0",
-    secondary: "#fff794",
-    ink: "#173c56",
+    color: "#b6893b",
+    ink: "#fcf0d8",
     visual: "property",
     label: "Invoices & work orders",
   },
@@ -66,9 +60,8 @@ export const scenes = [
       "Bring proof of delivery, shipment records, and billing packets together. Close the gap between the delivery and the invoice.",
     action: "EXPLORE THE WORKFLOW",
     href: "/workflows/freight/",
-    color: "#015a62",
-    secondary: "#ccba8e",
-    ink: "#e4d7b7",
+    color: "#486a61",
+    ink: "#e4e8dc",
     visual: "freight",
     label: "Proof of delivery to billing",
   },
@@ -80,9 +73,8 @@ export const scenes = [
       "Bring the workflow that makes your best people babysit software. We’ll find a focused pilot and measure what gets better.",
     action: "LET’S TALK ABOUT YOUR WORKFLOW",
     href: "/contact/",
-    color: "#f27db5",
-    secondary: "#66ffde",
-    ink: "#3a2439",
+    color: "#bd4b35",
+    ink: "#f5e2d0",
     visual: "pilot",
     label: "Build something that works",
   },
@@ -94,6 +86,7 @@ export const workflows = {
     headline: "Less chasing. More renewing.",
     intro:
       "Collect renewal information, coordinate portal work, update agency systems, and return approval steps to licensed staff.",
+    color: "#6c556d",
     steps: [
       "Gather renewal information from emails, documents, and existing records.",
       "Check required fields and flag missing or conflicting information.",
@@ -108,6 +101,7 @@ export const workflows = {
     headline: "An order should only be entered once.",
     intro:
       "Extract orders, check required fields, validate pricing or inventory, and route exceptions before entry.",
+    color: "#af3f52",
     steps: [
       "Capture incoming orders from email, PDFs, and spreadsheets.",
       "Extract line items, customer details, and required fields.",
@@ -122,6 +116,7 @@ export const workflows = {
     headline: "Give every invoice a clear way forward.",
     intro:
       "Connect incoming invoices, contracts, work orders, approvals, and accounting preparation with an auditable trail.",
+    color: "#b6893b",
     steps: [
       "Collect invoices, contracts, and supporting documents.",
       "Match documents to the relevant property and work order.",
@@ -136,6 +131,7 @@ export const workflows = {
     headline: "The delivery is done. Finish the paperwork.",
     intro:
       "Capture documents, verify shipment details, update transportation systems, and prepare complete billing packets.",
+    color: "#486a61",
     steps: [
       "Capture proof-of-delivery documents from existing channels.",
       "Verify shipment identifiers and required information.",

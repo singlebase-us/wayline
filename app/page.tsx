@@ -29,7 +29,6 @@ export default function Home() {
             style={
               {
                 "--scene-color": scene.color,
-                "--scene-secondary": scene.secondary,
                 "--scene-ink": scene.ink,
               } as React.CSSProperties
             }
@@ -74,9 +73,6 @@ export default function Home() {
           </section>
         ))}
       </main>
-      <div className="scene-footer">
-        <span className="footer-signoff">LESS FRICTION. MORE FORWARD.</span>
-      </div>
     </Experience>
   );
 }

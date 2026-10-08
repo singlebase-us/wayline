@@ -215,7 +215,6 @@ export function Experience({ children }: { children: React.ReactNode }) {
     const element = root.current;
     if (!element) return;
     element.style.setProperty("--active-bg", scenes[index].color);
-    element.style.setProperty("--active-secondary", scenes[index].secondary);
     element.style.setProperty("--active-ink", scenes[index].ink);
     document
       .querySelector('meta[name="theme-color"]')

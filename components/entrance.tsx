@@ -18,11 +18,7 @@ export function Entrance() {
           <span className="entrance-outline">WAYLINE</span>
           <span className="entrance-fill">WAYLINE</span>
         </div>
-        <p className="entrance-note">
-          Less friction. More forward.
-          <br />
-          One workflow at a time.
-        </p>
+        <p className="entrance-note">One workflow at a time.</p>
         <i className="entrance-progress" />
       </div>
       <button type="button" className="entrance-skip">
