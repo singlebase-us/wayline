@@ -29,6 +29,7 @@ export default function Home() {
             style={
               {
                 "--scene-color": scene.color,
+                "--scene-secondary": scene.secondary,
                 "--scene-ink": scene.ink,
               } as React.CSSProperties
             }

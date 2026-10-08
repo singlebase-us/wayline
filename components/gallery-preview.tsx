@@ -23,7 +23,7 @@ export function GalleryPreview({ index }: { index: number }) {
     const face = Math.abs(angle.current / 180) % 2;
     const destination = element.children[face] as HTMLElement;
     destination.querySelector("img")!.src = `/intro/desktop-${index}.jpg`;
-    destination.style.setProperty("--preview-border", scenes[index].ink);
+    destination.style.setProperty("--preview-border", scenes[index].secondary);
     element.style.transform = `rotateX(${angle.current}deg)`;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Reference preview: half-turn, 1 → .78 → 1 scale, 1100ms.
@@ -94,7 +94,7 @@ export function GalleryPreview({ index }: { index: number }) {
               key={face}
               style={
                 {
-                  "--preview-border": scenes[initial].ink,
+                  "--preview-border": scenes[initial].secondary,
                 } as React.CSSProperties
               }
             >

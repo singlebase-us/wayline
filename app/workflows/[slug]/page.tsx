@@ -60,7 +60,12 @@ export default async function Workflow({ params }: Props) {
       />
       <section
         className="workflow-hero"
-        style={{ "--workflow-color": item.color } as React.CSSProperties}
+        style={
+          {
+            "--workflow-color": scene.color,
+            "--workflow-ink": scene.ink,
+          } as React.CSSProperties
+        }
       >
         <h1>{item.headline}</h1>
         <p>{item.intro}</p>
