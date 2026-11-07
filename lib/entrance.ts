@@ -15,6 +15,29 @@ function unfoldEase(value: number) {
   return 3 * (1 - t) * t * t + t ** 3;
 }
 
+const SEEN_KEY = "wayline:intro-seen";
+
+/** Play the intro on the first visit in a tab and on every refresh;
+ *  skip it when returning to the home page from another page. */
+function shouldSkipForVisit() {
+  try {
+    const nav = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+    if (nav?.type === "reload") return false;
+    return sessionStorage.getItem(SEEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+function markSeen() {
+  try {
+    sessionStorage.setItem(SEEN_KEY, "1");
+  } catch {
+    /* storage unavailable: intro simply plays again */
+  }
+}
+
 export function startEntrance(
   root: HTMLElement,
   onComplete: () => void,
@@ -40,6 +63,7 @@ export function startEntrance(
   const finish = () => {
     if (disposed || finished) return;
     finished = true;
+    markSeen();
     cancelAnimationFrame(frame);
     clearTimeout(deadline);
     renderer?.dispose();
@@ -72,7 +96,9 @@ export function startEntrance(
   skip.addEventListener("click", finish);
 
   const run = async () => {
+    const skipVisit = shouldSkipForVisit();
     if (
+      skipVisit ||
       motion.matches ||
       innerHeight <= 600 ||
       (location.hash && location.hash !== "#overview")
@@ -140,16 +166,18 @@ export function startEntrance(
       const handoff = unfoldEase(
         clamp((elapsed - loadingDuration - 370) / 600),
       );
+      // Cross-fade to the DOM cards only once the WebGL cards have fully
+      // landed on them (handoff ends at +970ms), so the two never disagree.
       const crossfade = mobile
         ? exit
-        : clamp((elapsed - loadingDuration - 820) / 200);
+        : clamp((elapsed - loadingDuration - 990) / 200);
       overlay.style.setProperty("--load", String(progress));
       overlay.style.setProperty("--wipe", `${exit * 100}%`);
       overlay.style.setProperty("--canvas-alpha", String(1 - crossfade));
       root.style.setProperty("--intro-ui", String(exit));
       root.style.setProperty("--intro-cards", String(crossfade));
       renderer?.render(progress, unfold, handoff);
-      if (elapsed > loadingDuration + (mobile ? 370 : 1020)) {
+      if (elapsed > loadingDuration + (mobile ? 370 : 1200)) {
         finish();
         return;
       }

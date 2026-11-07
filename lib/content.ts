@@ -1,82 +1,86 @@
-export const email = "contact@singlebase.co";
+// Read and answered personally by a founder.
+export const email = "contact@wayline.studio";
+// Home gallery: the right-hand cards are decorative for now (the workflow
+// detail pages are outdated). Set to true to make them link again.
+export const galleryCardsClickable = false;
 export const scenes = [
   {
     id: "overview",
     number: "01",
-    title: ["Less busywork.", "More flow."],
+    title: ["Build fast.", "Stay built."],
     description:
-      "The operational last mile should not run on copy-and-paste. We connect the systems. You move the work forward.",
-    action: "MEET YOUR EXECUTION LAYER",
-    href: "/about/",
+      "You vibe-code the product. A full team of engineers and designers makes sure it holds up.",
+    action: "SEE HOW WE WORK",
+    href: "/services/",
     color: "#3d6681",
     ink: "#e2e7dc",
     visual: "flow",
-    label: "The execution layer",
+    label: "Build fast, stay built",
   },
   {
-    id: "insurance",
+    id: "landing",
     number: "02",
-    title: ["Renewals.", "Minus the chase."],
+    title: ["Landing page.", "Day one."],
     description:
-      "From renewal information to carrier portals. Keep the work moving, with licensed people in control of the decisions.",
-    action: "EXPLORE THE WORKFLOW",
-    href: "/workflows/insurance/",
+      "Brand, copy structure, motion, and SEO — from the same team that builds the product behind it.",
+    action: "WHAT WE BUILD",
+    href: "/services/#services",
     color: "#6c556d",
     ink: "#efe4e0",
     visual: "insurance",
-    label: "Renewals & carrier portals",
+    label: "Landing & brand site",
   },
   {
-    id: "distribution",
+    id: "product",
     number: "03",
-    title: ["Orders in.", "Busywork out."],
+    title: ["Your product.", "Built to last."],
     description:
-      "Turn email and PDF orders into validated, ready-to-enter records. Catch missing details before they become costly mistakes.",
-    action: "EXPLORE THE WORKFLOW",
-    href: "/workflows/distribution/",
+      "Frontend, APIs, auth, payments, and the agent and LLM work in between. Built to survive real users.",
+    action: "WHAT WE BUILD",
+    href: "/services/#services",
     color: "#af3f52",
     ink: "#f3dfd4",
     visual: "warehouse",
-    label: "Email & PDF orders to ERP",
+    label: "Product application",
   },
   {
-    id: "property",
+    id: "back-office",
     number: "04",
-    title: ["Every invoice.", "In its place."],
+    title: ["The back office.", "Handled."],
     description:
-      "Connect invoices, work orders, approvals, and accounting preparation. One traceable path from incoming to complete.",
-    action: "EXPLORE THE WORKFLOW",
-    href: "/workflows/property/",
+      "The admin, ops, and data tools your team uses every day — with permissions and audit trails built in.",
+    action: "WHAT WE BUILD",
+    href: "/services/#services",
     color: "#b6893b",
     ink: "#fcf0d8",
     visual: "property",
-    label: "Invoices & work orders",
+    label: "Private back office",
   },
   {
-    id: "freight",
+    id: "infrastructure",
     number: "05",
-    title: ["Delivered.", "Documented.", "Done."],
+    title: ["Shipped.", "Watched.", "Maintained."],
     description:
-      "Bring proof of delivery, shipment records, and billing packets together. Close the gap between the delivery and the invoice.",
-    action: "EXPLORE THE WORKFLOW",
-    href: "/workflows/freight/",
+      "Deploys, monitoring, cost control, and the on-call work nobody wants to own. We stay after launch.",
+    action: "WHAT WE BUILD",
+    href: "/services/#services",
     color: "#486a61",
     ink: "#e4e8dc",
     visual: "freight",
-    label: "Proof of delivery to billing",
+    label: "Infrastructure & on-call",
   },
   {
-    id: "pilot",
+    id: "pricing",
     number: "06",
-    title: ["Start narrow.", "Make it matter."],
+    title: ["A whole team.", "For less."],
     description:
-      "Bring the workflow that makes your best people babysit software. We’ll find a focused pilot and measure what gets better.",
-    action: "LET’S TALK ABOUT YOUR WORKFLOW",
-    href: "/contact/",
+      "For less than one engineer — from $1,000 a month. A founder answers every question personally.",
+    action: "SEE PRICING",
+    href: "/services/#pricing",
     color: "#bd4b35",
     ink: "#f5e2d0",
     visual: "pilot",
-    label: "Build something that works",
+    label: "Pricing",
   },
 ] as const;
 export const workflows = {
@@ -141,29 +145,95 @@ export const workflows = {
     ],
   },
 } as const;
-export const capabilities = [
+
+
+/* ───────────── Services & pricing ───────────── */
+
+export const services = [
   [
-    "Product",
-    "Discovery, prototype, user experience, landing page, and production web application.",
+    "Landing & brand site",
+    "The first page your users and investors see. Copy structure, design, motion, SEO, and analytics.",
   ],
   [
-    "Platform",
-    "Authentication, permissions, APIs, databases, payments, and third-party integrations.",
+    "Product application",
+    "The app your customers live in. Frontend, APIs, auth, payments, model and agent integrations.",
   ],
   [
-    "Agent systems",
-    "Tool use, multi-step execution, state management, retries, error handling, and human review.",
+    "Private back office",
+    "The admin, ops, and data tools your team uses every day. Permissions, audit trails, and dashboards.",
   ],
   [
-    "Integration",
-    "REST and GraphQL APIs, OAuth, webhooks, business systems, and browser control.",
+    "Infrastructure & reliability",
+    "Deployment, environments, monitoring, cost control, and the on-call work nobody wants to own.",
   ],
-  [
-    "Operations",
-    "Cloud deployment, continuous delivery, logs, monitoring, observability, and recovery.",
-  ],
-  [
-    "Productization",
-    "Turn recurring work into configurable connectors, approval patterns, and execution components.",
-  ],
+] as const;
+
+export const team = [
+  "Frontend engineering",
+  "Backend engineering",
+  "Product design",
+  "Agent & LLM systems",
+  "DevOps & infrastructure",
+  "QA & code review",
 ];
+
+export const responsibilities = {
+  you: [
+    "Own the product and the customer",
+    "Vibe-code features and prototypes freely",
+    "Decide what ships and when",
+  ],
+  us: [
+    "Architecture that survives the next 10× of usage",
+    "Review, refactor, and harden what you ship",
+    "Design system, security, deploys, and on-call",
+  ],
+};
+
+// Columns: full-time engineer · traditional outsourcing · WAYLINE
+export const comparison = [
+  ["Monthly cost", "One senior salary + overhead", "Per-project quote + change orders", "Less than one engineer"],
+  ["Roles covered", "One", "Whoever is free", "Frontend, backend, design, infra"],
+  ["Time to start", "1–3 months of hiring", "Weeks of scoping", "Days"],
+  ["Who writes code", "Them", "Them", "You and us, together"],
+  ["Incentive", "A salary", "Billable hours", "Profit share in your outcome"],
+  ["Relationship", "Employment", "Ends at hand-off", "Long-term partner"],
+  ["Trust risk", "One person — if they leave, the knowledge leaves", "Unknown subcontractors behind the contract", "A trusted international team, not one unstable individual"],
+] as const;
+
+export const plans = [
+  {
+    name: "Partner",
+    prefix: "FROM",
+    price: "$1,000",
+    cadence: "/ month",
+    hours: "30 hours a month by default",
+    summary: "The whole team, across your whole product.",
+    features: [
+      "Frontend, backend, and design on call",
+      "Landing page, product app, back office, and infrastructure",
+      "Code review on everything you vibe-code",
+      "Agent and LLM systems work",
+      "Shared channel, same-day response",
+      "Monitoring and on-call",
+    ],
+    featured: true,
+    cta: "BECOME A PARTNER",
+  },
+  {
+    name: "Custom",
+    prefix: "",
+    price: "Let’s talk",
+    cadence: "",
+    hours: "Hours and team shaped to your roadmap",
+    summary: "For multiple products, larger scope, or compliance needs.",
+    features: [
+      "Everything in Partner",
+      "Dedicated squad and roadmap planning",
+      "Security and compliance reviews",
+      "Hiring support for your in-house team",
+    ],
+    featured: false,
+    cta: "TALK TO US",
+  },
+] as const;

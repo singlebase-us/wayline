@@ -1,101 +1,157 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
-import { Visual } from "@/components/visual";
-import { capabilities } from "@/lib/content";
+import { FounderContact } from "@/components/founder-contact";
+
 export const metadata: Metadata = {
+  title: "About us — Your team, for years",
+  description:
+    "WAYLINE is an international team of engineers and designers working long-term with a small number of AI-native companies. Every member shares in the profit.",
+  alternates: { canonical: "/about/" },
   openGraph: {
-    title: "About us — The execution layer | WAYLINE",
+    title: "About us — Your team, for years | WAYLINE",
     description:
-      "Reliable workflows across email, documents, portals, and core systems.",
+      "An international team of engineers and designers, working long-term with a few AI-native companies.",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "About us — The execution layer | WAYLINE",
+    title: "About us — Your team, for years | WAYLINE",
     description:
-      "Reliable workflows across email, documents, portals, and core systems.",
+      "An international team of engineers and designers, working long-term with a few AI-native companies.",
   },
-  title: "About us — The execution layer",
-  description:
-    "WAYLINE builds reliable operational workflows across email, documents, portals, and core systems. Deterministic where possible. Agentic where useful.",
-  alternates: { canonical: "/about/" },
 };
+
+const roles = [
+  "Frontend",
+  "Backend",
+  "Design",
+  "Agents & LLM",
+  "Infrastructure",
+  "Review & QA",
+];
+
 const steps = [
   [
-    "Capture",
-    "Bring email, documents, forms, portal activity, and system events into one traceable task flow.",
+    "Talk to a founder",
+    "No sales layer. The people who run WAYLINE hear what you’re building and tell you honestly whether we fit.",
   ],
   [
-    "Validate",
-    "Extract fields, apply deterministic rules, compare records, and identify missing or conflicting information early.",
+    "Start in days",
+    "We join your repository, your channel, and your roadmap — no long scoping phase before anything ships.",
   ],
   [
-    "Execute",
-    "Use approved APIs, integrations, or browser control to move work across the existing stack.",
+    "You build, we back you",
+    "Your team keeps vibe-coding. We review, refactor, harden, and ship what needs to last.",
   ],
   [
-    "Escalate",
-    "Route low-confidence cases and high-impact actions to the right person with the context needed to decide.",
-  ],
-  [
-    "Observe",
-    "Record status, decisions, errors, retries, and recovery so the workflow remains visible and supportable.",
+    "Grow together",
+    "Hours and scope change as your company does. The team that knows your product stays with it.",
   ],
 ];
+
+const principles = [
+  [
+    "Fewer companies",
+    "We cap how many partners we take on, so your product gets attention instead of a slot in a queue.",
+  ],
+  [
+    "Everyone is a stakeholder",
+    "Our engineers and designers share in the profit. The quality of your product is their income.",
+  ],
+  [
+    "An international team",
+    "Built on years of working together, across time zones — not a roster of freelancers assembled per project.",
+  ],
+  [
+    "Founders on every account",
+    "A founder stays close to every partnership and answers your questions personally.",
+  ],
+  [
+    "Every layer, one team",
+    "Landing page, product, back office, and infrastructure — nothing falls between vendors.",
+  ],
+  [
+    "Built to be handed over",
+    "Readable code, documentation, and your own accounts. Staying should be a choice, never a lock-in.",
+  ],
+];
+
 export default function About() {
   return (
     <PageShell>
       <section className="about-hero">
         <div className="about-art">
-          <Visual kind="flow" />
+          <div className="flow-visual team-visual" aria-hidden="true">
+            <div className="diagram-top">
+              <span>WAYLINE</span>
+              <span>ONE TEAM</span>
+            </div>
+            <p className="flow-intro">
+              Every layer.
+              <br />
+              <em>One team.</em>
+            </p>
+            <div className="team-roles">
+              {roles.map((role) => (
+                <span key={role}>{role}</span>
+              ))}
+            </div>
+            <div className="team-you">
+              <span>Your team</span>
+              <strong>Builds the product. Owns the decisions.</strong>
+            </div>
+            <div className="diagram-bottom">
+              <span>LONG-TERM · FEW PARTNERS</span>
+              <span>FOUNDER-LED</span>
+            </div>
+          </div>
         </div>
         <div className="about-heading">
           <h1>
-            We connect
+            Your team.
             <br />
-            the in-between.
+            For years.
           </h1>
           <p className="about-intro">
-            Your core systems keep the records.
-            <br />
-            We make the work around them work.
+            An international team of engineers and designers, working with a
+            few AI-native companies — for years, not sprints.
           </p>
         </div>
       </section>
+
       <section className="editorial-section statement">
-        <p className="eyebrow">THE OPERATING GAP</p>
         <h2>
-          The gap is usually between systems,
+          Most outsourcing is built to end.
           <br />
-          <em>not inside them.</em>
+          <em>We’re built to stay.</em>
         </h2>
         <p>
-          Orders arrive in an inbox. Documents live in a folder. Someone has to
-          re-key the fields, check the status, and remember the unwritten rules.
-          As volume grows, so does the coordination.
+          Agencies are paid for hours and hand-offs. Freelancers move on when
+          something better comes along. Either way, the knowledge of your
+          product walks out the door.
         </p>
         <p>
-          We build reliable execution layers across email, documents, portals,
-          and systems of record — without forcing a core-system replacement.
+          We work the other way round: a stable team that joins your channel,
+          learns your product, and is still accountable for it next year.
         </p>
       </section>
+
       <section className="editorial-section execution-section">
         <div>
-          <p className="eyebrow">THE EXECUTION LAYER</p>
           <h2>
-            One controlled
+            Built around
             <br />
-            workflow.
+            the people who
             <br />
-            <em>Start to finish.</em>
+            <em>know the business.</em>
           </h2>
           <p>
-            We combine software engineering, integrations, browser automation,
-            and agents. The most reliable tool wins.
+            The people closest to your customers should build freely. We make
+            sure what they build is fast, safe, and still standing as you grow.
           </p>
           <p className="human-note">
-            Human-in-the-loop by design. People stay in control where judgment,
-            approval, or accountability matters.
+            Partnerships start at $1,000 a month, with 30 hours a month by
+            default.
           </p>
         </div>
         <ol className="execution-steps">
@@ -110,58 +166,56 @@ export default function About() {
           ))}
         </ol>
       </section>
+
       <div className="principle-band">
-        <span>DETERMINISTIC WHERE POSSIBLE.</span>
-        <span>AGENTIC WHERE USEFUL.</span>
-        <span aria-hidden="true">DETERMINISTIC WHERE POSSIBLE.</span>
+        <span>FEWER COMPANIES. BETTER WORK.</span>
+        <span>EVERYONE IS A STAKEHOLDER.</span>
+        <span aria-hidden="true">FEWER COMPANIES. BETTER WORK.</span>
       </div>
+
       <section className="editorial-section">
-        <p className="eyebrow">BUILT END TO END</p>
         <h2>
-          Custom where you’re unique.
+          Why it works.
           <br />
-          <em>Reusable everywhere else.</em>
+          <em>And keeps working.</em>
         </h2>
         <div className="capability-grid">
-          {capabilities.map(([title, copy], i) => (
+          {principles.map(([title, copy]) => (
             <article key={title}>
-              <span className="eyebrow">0{i + 1}</span>
               <h3>{title}</h3>
               <p>{copy}</p>
             </article>
           ))}
         </div>
       </section>
+
       <section className="editorial-section security-section">
-        <p className="eyebrow">PRACTICAL SECURITY FROM THE START</p>
         <h2>
-          Control is part
+          Trust is part
           <br />
           of the product.
         </h2>
         <div>
           <p>
-            Role-based access, encryption, secrets management, audit trails,
-            environment separation, least privilege, and data masking can be
-            built into the solution from the start. US-region cloud deployment
-            is available when required.
+            No single point of failure: knowledge of your product is shared
+            across the team and written down, so nobody leaving takes it with
+            them.
           </p>
-          <p className="muted">
-            Regulatory, certification, and enterprise-review requirements are
-            confirmed during discovery and scoped before delivery.
+          <p>
+            Your code, your accounts, your infrastructure. Access control,
+            secrets management, and least privilege are the default, not an
+            upgrade.
           </p>
         </div>
       </section>
+
       <section className="editorial-section closing-section">
-        <p className="eyebrow">ONE WORKFLOW. CLEAR CRITERIA. REAL EVIDENCE.</p>
         <h2>
-          Let’s make one workflow
+          Let’s build
           <br />
-          <em>measurably better.</em>
+          <em>for the long run.</em>
         </h2>
-        <a href="/contact/" className="text-link">
-          START A CONVERSATION <span className="link-arrow">↗</span>
-        </a>
+        <FounderContact subject="Working with WAYLINE" />
       </section>
     </PageShell>
   );

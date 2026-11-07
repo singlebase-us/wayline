@@ -35,7 +35,13 @@ export default async function Workflow({ params }: Props) {
   const { slug } = await params;
   const item = getWorkflow(slug);
   if (!item) notFound();
-  const scene = scenes.find((scene) => scene.id === slug)!;
+  const visualFor: Record<string, string> = {
+    insurance: "insurance",
+    distribution: "warehouse",
+    property: "property",
+    freight: "freight",
+  };
+  const scene = scenes.find((scene) => scene.visual === visualFor[slug])!;
   const entries = Object.keys(workflows);
   const next = entries[(entries.indexOf(slug) + 1) % entries.length];
   const data = {
@@ -47,11 +53,11 @@ export default async function Workflow({ params }: Props) {
     provider: {
       "@type": "Organization",
       name: "WAYLINE",
-      email: "contact@singlebase.co",
+      email: "contact@wayline.studio",
     },
   };
   return (
-    <PageShell back={`/#${slug}`}>
+    <PageShell back="/">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -73,7 +79,6 @@ export default async function Workflow({ params }: Props) {
       </section>
       <section className="editorial-section workflow-description">
         <div>
-          <p className="eyebrow">A REPRESENTATIVE WORKFLOW</p>
           <h2>
             From fragmented inputs
             <br />
@@ -100,7 +105,6 @@ export default async function Workflow({ params }: Props) {
       </section>
       <section className="editorial-section workflow-principles">
         <article>
-          <span className="eyebrow">01 / HUMAN CHECKPOINTS</span>
           <h3>Judgment stays human.</h3>
           <p>
             Low-confidence cases and high-impact actions return to the right
@@ -108,7 +112,6 @@ export default async function Workflow({ params }: Props) {
           </p>
         </article>
         <article>
-          <span className="eyebrow">02 / OBSERVABILITY</span>
           <h3>Know where work stands.</h3>
           <p>
             Status, decisions, errors, retries, and recovery are part of the
@@ -116,7 +119,6 @@ export default async function Workflow({ params }: Props) {
           </p>
         </article>
         <article>
-          <span className="eyebrow">03 / EXISTING SYSTEMS</span>
           <h3>Work with your stack.</h3>
           <p>
             Approved APIs, integrations, and browser control connect the tools
@@ -125,7 +127,6 @@ export default async function Workflow({ params }: Props) {
         </article>
       </section>
       <section className="editorial-section closing-section">
-        <p className="eyebrow">START NARROW. PROVE VALUE.</p>
         <h2>
           Have a workflow
           <br />

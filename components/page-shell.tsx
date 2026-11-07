@@ -1,4 +1,6 @@
 import { CopyEmail } from "./copy-email";
+import { email } from "@/lib/content";
+import { CopyEmailLink } from "./copy-email-link";
 export function PageShell({
   children,
   back = "/",
@@ -20,7 +22,7 @@ export function PageShell({
           WAYLINE
           <span className="brand-line" />
         </a>
-        <a href="mailto:contact@singlebase.co">CONTACT@SINGLEBASE.CO ↗</a>
+        <CopyEmailLink className="footer-email" label={email.toUpperCase()} />
       </footer>
     </div>
   );

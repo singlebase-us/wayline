@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
+import { FounderContact } from "@/components/founder-contact";
 export const metadata: Metadata = {
   openGraph: {
     title: "Start with one workflow | WAYLINE",
@@ -34,23 +35,11 @@ export default function Contact() {
           <br />
           That’s a good place to start.
         </p>
-        <a
-          className="contact-email"
-          href="mailto:contact@singlebase.co?subject=Let%E2%80%99s%20improve%20one%20workflow"
-        >
-          contact@singlebase.co <span aria-hidden="true">↗</span>
-        </a>
-        <span className="contact-note">
-          CLIENT CONVERSATIONS & SUPPORT DURING NORMAL US BUSINESS HOURS
-        </span>
+        <FounderContact subject="Let’s work together" />
       </section>
       <section className="editorial-section">
-        <p className="eyebrow">
-          START NARROW. PROVE VALUE. EXPAND WITH EVIDENCE.
-        </p>
         <div className="engagement-grid">
           <article>
-            <span>01 / DISCOVER</span>
             <h2>
               Bring one
               <br />
@@ -62,7 +51,6 @@ export default function Contact() {
             </p>
           </article>
           <article>
-            <span>02 / DEFINE</span>
             <h2>
               Set a<br />
               narrow pilot.
@@ -73,7 +61,6 @@ export default function Contact() {
             </p>
           </article>
           <article>
-            <span>03 / DELIVER</span>
             <h2>
               Build, observe,
               <br />
@@ -86,7 +73,6 @@ export default function Contact() {
           </article>
         </div>
         <div className="engagement-note">
-          <span className="eyebrow">HOW WE ENGAGE</span>
           <p>
             A scoped paid pilot, followed by implementation and ongoing support
             where the results justify it.

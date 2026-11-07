@@ -4,6 +4,8 @@ const vertexSource = `
 precision mediump float;
 attribute vec2 aUv;
 attribute vec2 aEnd;
+attribute float aEndW;
+attribute vec2 aTex;
 uniform vec2 uViewport;
 uniform float uIndex;
 uniform float uCount;
@@ -12,7 +14,9 @@ uniform float uUnfold;
 uniform float uHandoff;
 varying vec2 vUv;
 void main() {
-  vUv = aUv;
+  // Once landed, sample the texture exactly where the DOM card's clip-path
+  // crops it (instead of squeezing the whole snapshot into the clipped shape).
+  vUv = mix(aUv, aTex, uHandoff);
   float f = 1.0 / tan(radians(7.5));
   float height = 2.0 * 5.8 / f;
   float width = height * uViewport.x / uViewport.y;
@@ -34,7 +38,10 @@ void main() {
   p.xy = mat2(cos(rz), sin(rz), -sin(rz), cos(rz)) * p.xy;
   p += vec3(mix(.6, width * .16, uUnfold), 0.0, mix(-.5, .3, uUnfold));
   vec2 projected = vec2(f * p.x / (uViewport.x / uViewport.y), f * p.y) / (5.8 - p.z);
-  gl_Position = vec4(mix(projected, aEnd, uHandoff), 0.0, 1.0);
+  // Carry the DOM card's perspective w so the texture is interpolated
+  // perspective-correctly and lands without the affine "bend".
+  float w = mix(1.0, aEndW, uHandoff);
+  gl_Position = vec4(mix(projected, aEnd, uHandoff) * w, 0.0, w);
 }`;
 
 const fragmentSource = `
@@ -139,6 +146,10 @@ export function createIntroRenderer(
     gl.uniform3f(uniforms.uBaseColor, 0.146, 0.146, 0.146);
     const uvLocation = gl.getAttribLocation(program, "aUv");
     const endLocation = gl.getAttribLocation(program, "aEnd");
+    const endWLocation = gl.getAttribLocation(program, "aEndW");
+    const texLocation = gl.getAttribLocation(program, "aTex");
+    const STRIDE = 7;
+    const BYTES = STRIDE * 4;
     // Match the live CSS card's perspective at the end, so no detached canvas
     // remains over the interactive, server-rendered content.
     const entries = cards.map((card, index) => {
@@ -167,16 +178,19 @@ export function createIntroRenderer(
           y,
           ((cx + p.x / p.w) / width) * 2 - 1,
           1 - ((cy + p.y / p.w) / height) * 2,
+          p.w,
+          x,
+          clippedY,
         );
       };
       for (let x = 0; x < 50; x++)
-        for (let y = 0; y < 2; y++) {
-          point(x / 50, y / 2);
-          point((x + 1) / 50, y / 2);
-          point(x / 50, (y + 1) / 2);
-          point(x / 50, (y + 1) / 2);
-          point((x + 1) / 50, y / 2);
-          point((x + 1) / 50, (y + 1) / 2);
+        for (let y = 0; y < 8; y++) {
+          point(x / 50, y / 8);
+          point((x + 1) / 50, y / 8);
+          point(x / 50, (y + 1) / 8);
+          point(x / 50, (y + 1) / 8);
+          point((x + 1) / 50, y / 8);
+          point((x + 1) / 50, (y + 1) / 8);
         }
       const buffer = gl.createBuffer();
       const texture = gl.createTexture();
@@ -206,7 +220,7 @@ export function createIntroRenderer(
       return {
         buffer,
         texture,
-        count: vertices.length / 4,
+        count: vertices.length / STRIDE,
         opacity: index === 0 ? 1 : 0.28,
       };
     });
@@ -220,9 +234,13 @@ export function createIntroRenderer(
         entries.forEach((entry, index) => {
           gl.bindBuffer(gl.ARRAY_BUFFER, entry.buffer);
           gl.enableVertexAttribArray(uvLocation);
-          gl.vertexAttribPointer(uvLocation, 2, gl.FLOAT, false, 16, 0);
+          gl.vertexAttribPointer(uvLocation, 2, gl.FLOAT, false, BYTES, 0);
           gl.enableVertexAttribArray(endLocation);
-          gl.vertexAttribPointer(endLocation, 2, gl.FLOAT, false, 16, 8);
+          gl.vertexAttribPointer(endLocation, 2, gl.FLOAT, false, BYTES, 8);
+          gl.enableVertexAttribArray(endWLocation);
+          gl.vertexAttribPointer(endWLocation, 1, gl.FLOAT, false, BYTES, 16);
+          gl.enableVertexAttribArray(texLocation);
+          gl.vertexAttribPointer(texLocation, 2, gl.FLOAT, false, BYTES, 20);
           gl.bindTexture(gl.TEXTURE_2D, entry.texture);
           gl.uniform1f(uniforms.uIndex, index);
           gl.uniform1f(uniforms.uOpacity, entry.opacity);

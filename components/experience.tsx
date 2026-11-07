@@ -38,10 +38,51 @@ export function Experience({ children }: { children: React.ReactNode }) {
     };
     updateMotion();
     motionQuery.addEventListener("change", updateMotion);
-    element.setAttribute("data-enhanced", "true");
     const initial = scenes.findIndex(
       (scene) => `#${scene.id}` === location.hash,
     );
+    const startIndex = Math.max(0, initial);
+    // Place every scene at its final position before switching to the
+    // enhanced layout, with transitions off, so the cards don't visibly
+    // stack and then fly apart (most noticeable when the intro is skipped).
+    element.setAttribute("data-settling", "");
+    element
+      .querySelectorAll<HTMLElement>(".scene")
+      .forEach((section, i) =>
+        section.style.setProperty("--offset", String(i - startIndex)),
+      );
+    // Each card drifts on its own: random amplitude, rotation, period and phase.
+    element.querySelectorAll<HTMLElement>(".visual-frame").forEach((frame) => {
+      const rand = (min: number, max: number) =>
+        min + Math.random() * (max - min);
+      const sign = () => (Math.random() < 0.5 ? -1 : 1);
+      frame.style.setProperty("--fx", `${(sign() * rand(4, 9)).toFixed(1)}px`);
+      frame.style.setProperty("--fy", `${(sign() * rand(5, 11)).toFixed(1)}px`);
+      frame.style.setProperty(
+        "--fr",
+        `${(sign() * rand(0.25, 0.7)).toFixed(2)}deg`,
+      );
+      frame.style.setProperty("--fd", `${rand(7, 12).toFixed(2)}s`);
+      frame.style.setProperty("--fdelay", `${rand(0, 1.2).toFixed(2)}s`);
+    });
+    element.setAttribute("data-enhanced", "true");
+    // Scale factor between the fixed card design (519×440) and the live card.
+    const firstCard = element.querySelector<HTMLElement>(".visual-link");
+    const updateCardScale = () => {
+      if (firstCard)
+        element.style.setProperty(
+          "--card-scale",
+          String(firstCard.offsetWidth / 519),
+        );
+    };
+    updateCardScale();
+    const cardObserver = new ResizeObserver(updateCardScale);
+    if (firstCard) cardObserver.observe(firstCard);
+    let settleFrame = requestAnimationFrame(() => {
+      settleFrame = requestAnimationFrame(() =>
+        element.removeAttribute("data-settling"),
+      );
+    });
     if (initial > 0) {
       current.current = initial;
       setIndex(initial);
@@ -130,7 +171,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
           cursor.style.transform = `translate3d(${event.clientX - 34}px,${event.clientY - 34}px,0)`;
           cursor.classList.toggle(
             "is-visible",
-            !!(event.target as HTMLElement).closest(".visual-link"),
+            !!(event.target as HTMLElement).closest("a.visual-link"),
           );
         }
       });
@@ -197,6 +238,9 @@ export function Experience({ children }: { children: React.ReactNode }) {
     window.addEventListener("pageshow", onPageShow);
     return () => {
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(settleFrame);
+      cardObserver.disconnect();
+      element.removeAttribute("data-settling");
       motionQuery.removeEventListener("change", updateMotion);
       clearTimeout(transitionTimer);
       element.removeEventListener("wheel", onWheel);
@@ -255,7 +299,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
   return (
     <div ref={root} className={`experience${dragging ? " is-dragging" : ""}`}>
       {children}
-      <nav className="scene-nav" aria-label="Choose a workflow">
+      <nav className="scene-nav" aria-label="Choose a section">
         {scenes.map((scene, i) => (
           <button
             key={scene.id}

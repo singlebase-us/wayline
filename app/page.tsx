@@ -1,5 +1,5 @@
 import { Experience } from "@/components/experience";
-import { scenes } from "@/lib/content";
+import { galleryCardsClickable, scenes } from "@/lib/content";
 import { Visual } from "@/components/visual";
 export default function Home() {
   return (
@@ -9,17 +9,25 @@ export default function Home() {
           WAYLINE
           <span className="brand-line" />
         </a>
-        <a className="nav-link" href="/about/">
-          ABOUT US{" "}
-          <span className="nav-plus" aria-hidden="true">
-            +
-          </span>
-        </a>
+        <div className="nav-group">
+          <a className="nav-link nav-secondary" href="/services/">
+            SERVICES
+          </a>
+          <a className="nav-link nav-secondary" href="/services/#pricing">
+            PRICING
+          </a>
+          <a className="nav-link" href="/about/">
+            ABOUT US{" "}
+            <span className="nav-plus" aria-hidden="true">
+              +
+            </span>
+          </a>
+        </div>
       </header>
       <main
         id="main"
         className="scene-stage"
-        aria-label="Operational workflow systems"
+        aria-label="What WAYLINE does"
       >
         {scenes.map((scene, i) => (
           <section
@@ -60,16 +68,27 @@ export default function Home() {
                 </span>
               </a>
             </div>
-            <a
-              className={`visual-link visual-${scene.visual}`}
-              href={scene.href}
-              aria-label={scene.label}
-              tabIndex={i === 0 ? 0 : -1}
-            >
-              <div className="visual-frame">
-                <Visual kind={scene.visual} />
+            {galleryCardsClickable ? (
+              <a
+                className={`visual-link visual-${scene.visual}`}
+                href={scene.href}
+                aria-label={scene.label}
+                tabIndex={i === 0 ? 0 : -1}
+              >
+                <div className="visual-frame">
+                  <Visual kind={scene.visual} />
+                </div>
+              </a>
+            ) : (
+              <div
+                className={`visual-link visual-${scene.visual}`}
+                aria-hidden="true"
+              >
+                <div className="visual-frame">
+                  <Visual kind={scene.visual} />
+                </div>
               </div>
-            </a>
+            )}
           </section>
         ))}
       </main>

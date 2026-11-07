@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     "",
     "/about/",
+    "/services/",
     "/contact/",
     ...Object.keys(workflows).map((slug) => `/workflows/${slug}/`),
   ].map((path) => ({

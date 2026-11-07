@@ -6,21 +6,21 @@ export const metadata: Metadata = {
       "https://wayline-workflow-systems.mellow-pond-8134.chatgpt.site",
   ),
   title: {
-    default: "WAYLINE — Operational Workflow Systems",
+    default: "WAYLINE — A whole engineering team for AI-native companies",
     template: "%s | WAYLINE",
   },
   description:
-    "Reliable execution layers across email, documents, portals, and systems of record. WAYLINE builds operational workflows with human review, visibility, and recovery.",
+    "WAYLINE is a long-term engineering and design team for AI-native companies — landing page to private back office, for less than the cost of one engineer.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "WAYLINE",
-    title: "WAYLINE — Less busywork. More flow.",
+    title: "WAYLINE — Build fast. Stay built.",
     description:
-      "Reliable operational workflows across the systems you already use.",
+      "A whole engineering team for AI-native companies, for less than one hire.",
   },
-  twitter: { card: "summary", title: "WAYLINE — Less busywork. More flow." },
+  twitter: { card: "summary", title: "WAYLINE — Build fast. Stay built." },
   robots: { index: true, follow: true },
 };
 export const viewport: Viewport = {
@@ -35,15 +35,24 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "WAYLINE",
-    email: "contact@singlebase.co",
+    email: "contact@wayline.studio",
     url:
       process.env.NEXT_PUBLIC_SITE_URL ||
       "https://wayline-workflow-systems.mellow-pond-8134.chatgpt.site",
     description:
-      "Product engineering for real-world operations. Reliable execution layers across email, documents, portals, and systems of record.",
+      "A long-term engineering and design team for AI-native companies: landing pages, product applications, back offices, and infrastructure.",
   };
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Lets CSS hide the un-enhanced home layout for the one frame
+            before hydration, so it never flashes on navigation. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"

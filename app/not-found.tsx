@@ -1,7 +1,6 @@
 export default function NotFound() {
   return (
     <main id="main" className="not-found">
-      <p className="eyebrow">WAYLINE / 404</p>
       <h1>
         This path
         <br />
