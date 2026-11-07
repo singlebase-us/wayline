@@ -2684,56 +2684,61 @@ html.js .experience:not([data-enhanced]) > * {
   cursor: inherit;
 }
 
-/* About: team card in the hero art */
-.team-visual .flow-intro {
-  margin: 18px 0 20px;
-}
-.team-roles {
+/* About: text-only hero (no illustration) */
+.about-hero--text {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  min-height: 0;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 90px 6.25% 100px;
 }
-.team-roles > span {
-  font-size: 11px;
-  border: 1px solid #adbbb0;
-  border-radius: 4px;
-  padding: 9px 6px;
-  text-align: center;
+.about-pixel {
+  /* bleeds past the column toward the left edge and melts into the page */
+  margin-left: -14%;
+  width: 114%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 90%, transparent);
 }
-.team-you {
-  margin-top: 14px;
-  background: #2d4c47;
-  color: #e3e8dc;
-  border-radius: 5px;
-  padding: 13px 16px;
-}
-.team-you > span {
+.pixel-canvas {
   display: block;
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin-bottom: 5px;
-}
-.team-you > strong {
-  font-size: 13px;
-  font-weight: 500;
-}
-.about-hero .about-art > .flow-visual {
+  width: 100%;
   height: auto;
-  min-height: 390px;
+  aspect-ratio: 4 / 3;
+  image-rendering: pixelated;
+}
+.about-hero--text .about-heading h1 {
+  font-size: clamp(56px, 6.4vw, 104px);
+  letter-spacing: -3px;
+}
+.about-hero--text .about-heading {
+  margin: 0;
+  width: auto;
+  padding: 0;
+}
+.about-hero--text .about-heading h1 {
+  margin-top: 0;
+}
+.about-hero--text .about-intro {
+  margin: 0;
+  max-width: 520px;
 }
 @media (max-width: 800px) {
-  .about-hero .about-art > .flow-visual {
-    min-height: 0;
-    height: 295px;
-    overflow: hidden;
+  .about-hero--text {
+    display: block;
+    padding: 30px 7% 30px;
   }
-  .team-you {
-    display: none;
+  .about-pixel {
+    margin: 0 -7% 24px;
+    width: 114%;
   }
-  .team-roles > span {
-    font-size: 10px;
-    padding: 7px 4px;
+  .about-hero--text .about-heading h1 {
+    font-size: 52px;
+    letter-spacing: -2.5px;
+  }
+  .about-hero--text .about-intro {
+    margin: 0;
   }
 }

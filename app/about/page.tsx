@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 import { FounderContact } from "@/components/founder-contact";
+import { PixelPower } from "@/components/pixel-power";
 
 export const metadata: Metadata = {
   title: "About us — Your team, for years",
@@ -20,15 +21,6 @@ export const metadata: Metadata = {
       "An international team of engineers and designers, working long-term with a few AI-native companies.",
   },
 };
-
-const roles = [
-  "Frontend",
-  "Backend",
-  "Design",
-  "Agents & LLM",
-  "Infrastructure",
-  "Review & QA",
-];
 
 const steps = [
   [
@@ -79,32 +71,9 @@ const principles = [
 export default function About() {
   return (
     <PageShell>
-      <section className="about-hero">
-        <div className="about-art">
-          <div className="flow-visual team-visual" aria-hidden="true">
-            <div className="diagram-top">
-              <span>WAYLINE</span>
-              <span>ONE TEAM</span>
-            </div>
-            <p className="flow-intro">
-              Every layer.
-              <br />
-              <em>One team.</em>
-            </p>
-            <div className="team-roles">
-              {roles.map((role) => (
-                <span key={role}>{role}</span>
-              ))}
-            </div>
-            <div className="team-you">
-              <span>Your team</span>
-              <strong>Builds the product. Owns the decisions.</strong>
-            </div>
-            <div className="diagram-bottom">
-              <span>LONG-TERM · FEW PARTNERS</span>
-              <span>FOUNDER-LED</span>
-            </div>
-          </div>
+      <section className="about-hero about-hero--text">
+        <div className="about-pixel">
+          <PixelPower className="pixel-canvas" />
         </div>
         <div className="about-heading">
           <h1>
