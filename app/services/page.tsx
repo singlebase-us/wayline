@@ -12,12 +12,12 @@ import {
 export const metadata: Metadata = {
   title: "Services & pricing",
   description:
-    "A complete engineering and design team for AI-native companies — for less than the cost of one engineer. Landing page to private back office.",
+    "A complete engineering and design team for AI-native companies — landing page to private back office, starting at $1,000 a month.",
   alternates: { canonical: "/services/" },
   openGraph: {
     title: "Services & pricing | WAYLINE",
     description:
-      "A whole team for less than one engineer. Long-term engineering partners for AI-native companies.",
+      "A whole team, every layer. Long-term engineering partners for AI-native companies.",
     type: "website",
   },
 };
@@ -30,7 +30,7 @@ export default function Services() {
         <h1>
           A whole team.
           <br />
-          <em>For less than one engineer.</em>
+          <em>Every layer covered.</em>
         </h1>
         <p className="svc-lede">
           Durable, efficient engineering for companies building with AI. We
@@ -107,9 +107,9 @@ export default function Services() {
       {/* 4 — Comparison */}
       <section id="why" className="editorial-section svc-compare-section">
         <h2>
-          The price of one hire.
+          Not a vendor.
           <br />
-          <em>The reach of a team.</em>
+          <em>A team that stays.</em>
         </h2>
         <div className="svc-table-wrap">
           <table className="svc-table">

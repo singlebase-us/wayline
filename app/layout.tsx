@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | WAYLINE",
   },
   description:
-    "WAYLINE is a long-term engineering and design team for AI-native companies — landing page to private back office, for less than the cost of one engineer.",
+    "WAYLINE is a long-term engineering and design team for AI-native companies — landing page to private back office, starting at $1,000 a month.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "WAYLINE",
     title: "WAYLINE — Build fast. Stay built.",
     description:
-      "A whole engineering team for AI-native companies, for less than one hire.",
+      "A whole engineering team for AI-native companies, built for the long run.",
   },
   twitter: { card: "summary", title: "WAYLINE — Build fast. Stay built." },
   robots: { index: true, follow: true },
