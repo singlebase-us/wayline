@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | WAYLINE",
   },
   description:
-    "WAYLINE is a long-term engineering and design team for AI-native companies — landing page to private back office, starting at $1,000 a month.",
+    "WAYLINE is a long-term engineering and design team for AI-native companies — landing page to private back office, starting at $3,000 a month.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

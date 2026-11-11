@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Services & pricing",
   description:
-    "A complete engineering and design team for AI-native companies — landing page to private back office, starting at $1,000 a month.",
+    "A complete engineering and design team for AI-native companies — landing page to private back office, starting at $3,000 a month.",
   alternates: { canonical: "/services/" },
   openGraph: {
     title: "Services & pricing | WAYLINE",

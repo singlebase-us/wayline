@@ -119,7 +119,7 @@ export default function About() {
             sure what they build is fast, safe, and still standing as you grow.
           </p>
           <p className="human-note">
-            Partnerships start at $1,000 a month, with 30 hours a month by
+            Partnerships start at $3,000 a month, with 30 hours a month by
             default.
           </p>
         </div>

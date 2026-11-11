@@ -74,7 +74,7 @@ export const scenes = [
     number: "06",
     title: ["Start small.", "Stay long."],
     description:
-      "Partnerships start at $1,000 a month, with a founder answering every question personally.",
+      "Partnerships start at $3,000 a month, with a founder answering every question personally.",
     action: "SEE PRICING",
     href: "/services/#pricing",
     color: "#bd4b35",
@@ -192,7 +192,7 @@ export const responsibilities = {
 
 // Columns: full-time engineer · traditional outsourcing · WAYLINE
 export const comparison = [
-  ["Monthly cost", "One senior salary + overhead", "Per-project quote + change orders", "Starting at $1,000 / month"],
+  ["Monthly cost", "One senior salary + overhead", "Per-project quote + change orders", "Starting at $3,000 / month"],
   ["Roles covered", "One", "Whoever is free", "Frontend, backend, design, infra"],
   ["Time to start", "1–3 months of hiring", "Weeks of scoping", "Days"],
   ["Who writes code", "Them", "Them", "You and us, together"],
@@ -205,7 +205,7 @@ export const plans = [
   {
     name: "Partner",
     prefix: "Starting at",
-    price: "$1,000",
+    price: "$3,000",
     cadence: "/ month",
     hours: "30 hours a month by default",
     summary: "The whole team, across your whole product.",
