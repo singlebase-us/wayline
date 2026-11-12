@@ -1,3 +1,4 @@
+import { LocaleLink } from "@/components/i18n";
 import { T } from "@/components/i18n";
 import { LanguageNav } from "./language-nav";
 import { CopyEmail } from "./copy-email";
@@ -13,16 +14,16 @@ export function PageShell({
   return (
     <div className="editorial-page">
       <header className="site-header detail-header">
-        <a className="nav-link" href={back}>
-          <span aria-hidden="true">←</span><T>{"BACK"}</T></a>
+        <LocaleLink className="nav-link" href={back}>
+          <span aria-hidden="true">←</span><T>{"BACK"}</T></LocaleLink>
         <LanguageNav><CopyEmail /></LanguageNav>
       </header>
       <main id="main">{children}</main>
       <footer className="detail-footer">
-        <a className="wordmark" href="/">
+        <LocaleLink className="wordmark" href="/">
           WAYLINE
           <span className="brand-line" />
-        </a>
+        </LocaleLink>
         <CopyEmailLink className="footer-email" label={email.toUpperCase()} />
       </footer>
     </div>

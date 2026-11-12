@@ -1,3 +1,4 @@
+import { LocaleLink } from "@/components/i18n";
 import { T } from "@/components/i18n";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -112,14 +113,14 @@ export default async function Workflow({ params }: Props) {
         <h2><T>{"Have a workflow"}</T><br />
           <em><T>{"like this one?"}</T></em>
         </h2>
-        <a className="text-link" href={`/contact/?workflow=${slug}`}><T>{"LET’S MAP IT TOGETHER"}</T><span className="link-arrow">↗</span>
-        </a>
+        <LocaleLink className="text-link" href={`/contact/?workflow=${slug}`}><T>{"LET’S MAP IT TOGETHER"}</T><span className="link-arrow">↗</span>
+        </LocaleLink>
       </section>
-      <a href={`/workflows/${next}/`} className="next-workflow">
+      <LocaleLink href={`/workflows/${next}/`} className="next-workflow">
         <span className="eyebrow"><T>{"NEXT WORKFLOW"}</T></span>
         <strong><T>{workflows[next as keyof typeof workflows].title}</T></strong>
         <span aria-hidden="true">↗</span>
-      </a>
+      </LocaleLink>
     </PageShell>
   );
 }

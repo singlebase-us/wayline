@@ -1,4 +1,5 @@
 "use client";
+import { LocaleLink } from "@/components/i18n";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocale } from "./i18n";
@@ -59,7 +60,7 @@ export function GalleryPreview({ index }: { index: number }) {
   }, []);
 
   return (
-    <a
+    <LocaleLink
       className="gallery-preview"
       href={scene.href}
       aria-label={t(scene.label)}
@@ -111,6 +112,6 @@ export function GalleryPreview({ index }: { index: number }) {
           ))}
         </span>
       </span>
-    </a>
+    </LocaleLink>
   );
 }

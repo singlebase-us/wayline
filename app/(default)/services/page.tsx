@@ -1,3 +1,4 @@
+import { LocaleLink } from "@/components/i18n";
 import { T, Labelled } from "@/components/i18n";
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
@@ -33,9 +34,9 @@ export default function Services() {
         </h1>
         <p className="svc-lede"><T>{"Durable, efficient engineering for companies building with AI. We join for the long run, not for a single hand-off."}</T></p>
         <Labelled as="nav" className="svc-jump" aria-label="On this page">
-          <a href="#services"><T>{"Services"}</T></a>
-          <a href="#why"><T>{"Why us"}</T></a>
-          <a href="#pricing"><T>{"Pricing"}</T></a>
+          <LocaleLink href="#services"><T>{"Services"}</T></LocaleLink>
+          <LocaleLink href="#why"><T>{"Why us"}</T></LocaleLink>
+          <LocaleLink href="#pricing"><T>{"Pricing"}</T></LocaleLink>
         </Labelled>
       </section>
 
@@ -170,10 +171,10 @@ export default function Services() {
                 ))}
               </ul>
               <p className="svc-hours"><T>{plan.hours}</T></p>
-              <a href="/contact/" className="svc-plan-cta">
+              <LocaleLink href="/contact/" className="svc-plan-cta">
                 <T>{plan.cta}</T>
                 <span aria-hidden="true">↗</span>
-              </a>
+              </LocaleLink>
             </article>
           ))}
         </div>

@@ -1,4 +1,5 @@
 "use client";
+import { LocaleLink } from "@/components/i18n";
 import { T, useLocale } from "@/components/i18n";
 import { LanguageNav } from "@/components/language-nav";
 import { Experience } from "@/components/experience";
@@ -9,18 +10,18 @@ export default function Home() {
   return (
     <Experience>
       <header className="site-header">
-        <a className="wordmark" href="/" aria-label={t("WAYLINE home")}>
+        <LocaleLink className="wordmark" href="/" aria-label={t("WAYLINE home")}>
           WAYLINE
           <span className="brand-line" />
-        </a>
+        </LocaleLink>
         <LanguageNav>
-          <a className="nav-link nav-secondary" href="/services/"><T>{"SERVICES"}</T></a>
-          <a className="nav-link nav-secondary" href="/services/#pricing"><T>{"PRICING"}</T></a>
-          <a className="nav-link" href="/about/"><T>{"ABOUT US"}</T>{" "}
+          <LocaleLink className="nav-link nav-secondary" href="/services/"><T>{"SERVICES"}</T></LocaleLink>
+          <LocaleLink className="nav-link nav-secondary" href="/services/#pricing"><T>{"PRICING"}</T></LocaleLink>
+          <LocaleLink className="nav-link" href="/about/"><T>{"ABOUT US"}</T>{" "}
             <span className="nav-plus" aria-hidden="true">
               +
             </span>
-          </a>
+          </LocaleLink>
         </LanguageNav>
       </header>
       <main
@@ -60,15 +61,15 @@ export default function Home() {
                 </h2>
               )}
               <p className="scene-description"><T>{scene.description}</T></p>
-              <a className="text-link" href={scene.href}>
+              <LocaleLink className="text-link" href={scene.href}>
                 <T>{scene.action}</T>
                 <span aria-hidden="true" className="link-arrow">
                   ↗
                 </span>
-              </a>
+              </LocaleLink>
             </div>
             {galleryCardsClickable ? (
-              <a
+              <LocaleLink
                 className={`visual-link visual-${scene.visual}`}
                 href={scene.href}
                 aria-label={t(scene.label)}
@@ -77,7 +78,7 @@ export default function Home() {
                 <div className="visual-frame">
                   <Visual kind={scene.visual} />
                 </div>
-              </a>
+              </LocaleLink>
             ) : (
               <div
                 className={`visual-link visual-${scene.visual}`}
