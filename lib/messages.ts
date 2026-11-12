@@ -1,5 +1,12 @@
 // English source keys; translations ordered: zh-CN, zh-TW, ja, ru.
 export const messages: Record<string, readonly [string, string, string, string]> = {
+  "Good work starts here.": ["好作品，从这里开始。", "好作品，從這裡開始。", "いい仕事は、ここから。", "Хорошая работа начинается здесь."],
+  "Make your first impression count.": ["让第一眼，就留下印象。", "讓第一眼，就留下印象。", "第一印象を、確かなものに。", "Первое впечатление имеет значение."],
+  "Ideas become everyday tools.": ["让想法，成为日常所用。", "讓想法，成為日常所用。", "アイデアを、毎日の道具に。", "Идеи становятся повседневными инструментами."],
+  "Room for the work that matters.": ["把精力留给重要的事。", "把精力留給重要的事。", "大切な仕事に、集中できる余白を。", "Больше места для важной работы."],
+  "Behind every smooth launch.": ["每次平稳上线，都有我们。", "每次平穩上線，都有我們。", "スムーズな公開を、舞台裏から。", "За каждым успешным запуском."],
+  "A team for the long run.": ["与你一起，走得更远。", "與你一起，走得更遠。", "長く、ともに歩むチーム。", "Команда на долгий срок."],
+
   "Choose language": [
     "选择语言",
     "選擇語言",

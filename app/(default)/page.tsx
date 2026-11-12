@@ -4,7 +4,7 @@ import { T, useLocale } from "@/components/i18n";
 import { LanguageNav } from "@/components/language-nav";
 import { Experience } from "@/components/experience";
 import { galleryCardsClickable, scenes } from "@/lib/content";
-import { Visual } from "@/components/visual";
+import { HomeVisual } from "@/components/home-visual";
 export default function Home() {
   const { t } = useLocale();
   return (
@@ -76,7 +76,7 @@ export default function Home() {
                 tabIndex={i === 0 ? 0 : -1}
               >
                 <div className="visual-frame">
-                  <Visual kind={scene.visual} />
+                  <HomeVisual scene={scene} />
                 </div>
               </LocaleLink>
             ) : (
@@ -85,7 +85,7 @@ export default function Home() {
                 aria-hidden="true"
               >
                 <div className="visual-frame">
-                  <Visual kind={scene.visual} />
+                  <HomeVisual scene={scene} />
                 </div>
               </div>
             )}
