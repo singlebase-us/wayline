@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n";
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 import { FounderContact } from "@/components/founder-contact";
@@ -76,60 +77,34 @@ export default function About() {
           <PixelPower className="pixel-canvas" />
         </div>
         <div className="about-heading">
-          <h1>
-            Your team.
-            <br />
-            For years.
-          </h1>
-          <p className="about-intro">
-            An international team of engineers and designers, working with a
-            few AI-native companies — for years, not sprints.
-          </p>
+          <h1><T>{"Your team."}</T><br /><T>{"For years."}</T></h1>
+          <p className="about-intro"><T>{"An international team of engineers and designers, working with a few AI-native companies — for years, not sprints."}</T></p>
         </div>
       </section>
 
       <section className="editorial-section statement">
-        <h2>
-          Most outsourcing is built to end.
-          <br />
-          <em>We’re built to stay.</em>
+        <h2><T>{"Most outsourcing is built to end."}</T><br />
+          <em><T>{"We’re built to stay."}</T></em>
         </h2>
-        <p>
-          Agencies are paid for hours and hand-offs. Freelancers move on when
-          something better comes along. Either way, the knowledge of your
-          product walks out the door.
-        </p>
-        <p>
-          We work the other way round: a stable team that joins your channel,
-          learns your product, and is still accountable for it next year.
-        </p>
+        <p><T>{"Agencies are paid for hours and hand-offs. Freelancers move on when something better comes along. Either way, the knowledge of your product walks out the door."}</T></p>
+        <p><T>{"We work the other way round: a stable team that joins your channel, learns your product, and is still accountable for it next year."}</T></p>
       </section>
 
       <section className="editorial-section execution-section">
         <div>
-          <h2>
-            Built around
-            <br />
-            the people who
-            <br />
-            <em>know the business.</em>
+          <h2><T>{"Built around"}</T><br /><T>{"the people who"}</T><br />
+            <em><T>{"know the business."}</T></em>
           </h2>
-          <p>
-            The people closest to your customers should build freely. We make
-            sure what they build is fast, safe, and still standing as you grow.
-          </p>
-          <p className="human-note">
-            Partnerships start at $3,000 a month, with 30 hours a month by
-            default.
-          </p>
+          <p><T>{"The people closest to your customers should build freely. We make sure what they build is fast, safe, and still standing as you grow."}</T></p>
+          <p className="human-note"><T>{"Partnerships start at $3,000 a month, with 30 hours a month by default."}</T></p>
         </div>
         <ol className="execution-steps">
           {steps.map(([title, copy], i) => (
             <li key={title}>
               <span className="step-number">0{i + 1}</span>
               <div>
-                <h3>{title}</h3>
-                <p>{copy}</p>
+                <h3><T>{title}</T></h3>
+                <p><T>{copy}</T></p>
               </div>
             </li>
           ))}
@@ -137,52 +112,36 @@ export default function About() {
       </section>
 
       <div className="principle-band">
-        <span>FEWER COMPANIES. BETTER WORK.</span>
-        <span>EVERYONE IS A STAKEHOLDER.</span>
-        <span aria-hidden="true">FEWER COMPANIES. BETTER WORK.</span>
+        <span><T>{"FEWER COMPANIES. BETTER WORK."}</T></span>
+        <span><T>{"EVERYONE IS A STAKEHOLDER."}</T></span>
+        <span aria-hidden="true"><T>{"FEWER COMPANIES. BETTER WORK."}</T></span>
       </div>
 
       <section className="editorial-section">
-        <h2>
-          Why it works.
-          <br />
-          <em>And keeps working.</em>
+        <h2><T>{"Why it works."}</T><br />
+          <em><T>{"And keeps working."}</T></em>
         </h2>
         <div className="capability-grid">
           {principles.map(([title, copy]) => (
             <article key={title}>
-              <h3>{title}</h3>
-              <p>{copy}</p>
+              <h3><T>{title}</T></h3>
+              <p><T>{copy}</T></p>
             </article>
           ))}
         </div>
       </section>
 
       <section className="editorial-section security-section">
-        <h2>
-          Trust is part
-          <br />
-          of the product.
-        </h2>
+        <h2><T>{"Trust is part"}</T><br /><T>{"of the product."}</T></h2>
         <div>
-          <p>
-            No single point of failure: knowledge of your product is shared
-            across the team and written down, so nobody leaving takes it with
-            them.
-          </p>
-          <p>
-            Your code, your accounts, your infrastructure. Access control,
-            secrets management, and least privilege are the default, not an
-            upgrade.
-          </p>
+          <p><T>{"No single point of failure: knowledge of your product is shared across the team and written down, so nobody leaving takes it with them."}</T></p>
+          <p><T>{"Your code, your accounts, your infrastructure. Access control, secrets management, and least privilege are the default, not an upgrade."}</T></p>
         </div>
       </section>
 
       <section className="editorial-section closing-section">
-        <h2>
-          Let’s build
-          <br />
-          <em>for the long run.</em>
+        <h2><T>{"Let’s build"}</T><br />
+          <em><T>{"for the long run."}</T></em>
         </h2>
         <FounderContact subject="Working with WAYLINE" />
       </section>

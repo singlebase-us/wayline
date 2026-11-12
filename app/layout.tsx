@@ -1,3 +1,4 @@
+import { LocaleProvider, T } from "@/components/i18n";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
@@ -60,10 +61,12 @@ export default function RootLayout({
             __html: JSON.stringify(organization).replace(/</g, "\\u003c"),
           }}
         />
+        <LocaleProvider>
         <a href="#main" className="skip-link">
-          Skip to content
+          <T>Skip to content</T>
         </a>
         {children}
+        </LocaleProvider>
       </body>
     </html>
   );

@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLocale } from "./i18n";
 import gsap from "gsap";
 import { scenes } from "@/lib/content";
 import { Entrance } from "@/components/entrance";
 import { GalleryPreview } from "@/components/gallery-preview";
 
 export function Experience({ children }: { children: React.ReactNode }) {
+  const { t } = useLocale();
   const root = useRef<HTMLDivElement>(null);
   const current = useRef(0);
   const lockedUntil = useRef(0);
@@ -299,25 +301,25 @@ export function Experience({ children }: { children: React.ReactNode }) {
   return (
     <div ref={root} className={`experience${dragging ? " is-dragging" : ""}`}>
       {children}
-      <nav className="scene-nav" aria-label="Choose a section">
+      <nav className="scene-nav" aria-label={t("Choose a section")}>
         {scenes.map((scene, i) => (
           <button
             key={scene.id}
-            aria-label={scene.label}
+            aria-label={t(scene.label)}
             aria-current={i === index ? "step" : undefined}
             onClick={() => select(i)}
           >
-            <span className="dot-label">{scene.label}</span>
+            <span className="dot-label">{t(scene.label)}</span>
             <span className="nav-dot" />
           </button>
         ))}
       </nav>
       <GalleryPreview index={index} />
       <span className="sr-only" aria-live="polite" aria-atomic="true">
-        {scenes[index].label}
+        {t(scenes[index].label)}
       </span>
       <div className="gallery-cursor" aria-hidden="true">
-        {dragging ? "DRAG" : "VIEW"}
+        {t(dragging ? "DRAG" : "VIEW")}
         <span>↗</span>
       </div>
       <div className="page-wipe" aria-hidden="true" />

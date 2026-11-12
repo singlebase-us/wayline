@@ -1,3 +1,4 @@
+import { T } from "@/components/i18n";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
@@ -68,10 +69,9 @@ export default async function Workflow({ params }: Props) {
         className="workflow-hero"
         style={{ "--workflow-color": item.color } as React.CSSProperties}
       >
-        <h1>{item.headline}</h1>
-        <p>{item.intro}</p>
-        <span className="workflow-scroll">
-          SCROLL TO EXPLORE <span aria-hidden="true">↓</span>
+        <h1><T>{item.headline}</T></h1>
+        <p><T>{item.intro}</T></p>
+        <span className="workflow-scroll"><T>{"SCROLL TO EXPLORE"}</T><span aria-hidden="true">↓</span>
         </span>
         <div className="workflow-art">
           <Visual kind={scene.visual} />
@@ -79,66 +79,45 @@ export default async function Workflow({ params }: Props) {
       </section>
       <section className="editorial-section workflow-description">
         <div>
-          <h2>
-            From fragmented inputs
-            <br />
-            <em>to completed work.</em>
+          <h2><T>{"From fragmented inputs"}</T><br />
+            <em><T>{"to completed work."}</T></em>
           </h2>
-          <p>
-            Start with one recurring workflow that crosses systems, contains
-            real exceptions, and costs money when it is slow or wrong.
-          </p>
-          <p className="muted">
-            This is an illustrative use case, not a published client case study.
-            System access, workflow economics, security, and maintainability are
-            evaluated during discovery.
-          </p>
+          <p><T>{"Start with one recurring workflow that crosses systems, contains real exceptions, and costs money when it is slow or wrong."}</T></p>
+          <p className="muted"><T>{"This is an illustrative use case, not a published client case study. System access, workflow economics, security, and maintainability are evaluated during discovery."}</T></p>
         </div>
         <ol className="execution-steps">
           {item.steps.map((step, i) => (
             <li key={step}>
               <span className="step-number">0{i + 1}</span>
-              <p>{step}</p>
+              <p><T>{step}</T></p>
             </li>
           ))}
         </ol>
       </section>
       <section className="editorial-section workflow-principles">
         <article>
-          <h3>Judgment stays human.</h3>
-          <p>
-            Low-confidence cases and high-impact actions return to the right
-            person with the context needed to decide.
-          </p>
+          <h3><T>{"Judgment stays human."}</T></h3>
+          <p><T>{"Low-confidence cases and high-impact actions return to the right person with the context needed to decide."}</T></p>
         </article>
         <article>
-          <h3>Know where work stands.</h3>
-          <p>
-            Status, decisions, errors, retries, and recovery are part of the
-            workflow — so it remains visible and supportable.
-          </p>
+          <h3><T>{"Know where work stands."}</T></h3>
+          <p><T>{"Status, decisions, errors, retries, and recovery are part of the workflow — so it remains visible and supportable."}</T></p>
         </article>
         <article>
-          <h3>Work with your stack.</h3>
-          <p>
-            Approved APIs, integrations, and browser control connect the tools
-            you already use.
-          </p>
+          <h3><T>{"Work with your stack."}</T></h3>
+          <p><T>{"Approved APIs, integrations, and browser control connect the tools you already use."}</T></p>
         </article>
       </section>
       <section className="editorial-section closing-section">
-        <h2>
-          Have a workflow
-          <br />
-          <em>like this one?</em>
+        <h2><T>{"Have a workflow"}</T><br />
+          <em><T>{"like this one?"}</T></em>
         </h2>
-        <a className="text-link" href={`/contact/?workflow=${slug}`}>
-          LET’S MAP IT TOGETHER <span className="link-arrow">↗</span>
+        <a className="text-link" href={`/contact/?workflow=${slug}`}><T>{"LET’S MAP IT TOGETHER"}</T><span className="link-arrow">↗</span>
         </a>
       </section>
       <a href={`/workflows/${next}/`} className="next-workflow">
-        <span className="eyebrow">NEXT WORKFLOW</span>
-        <strong>{workflows[next as keyof typeof workflows].title}</strong>
+        <span className="eyebrow"><T>{"NEXT WORKFLOW"}</T></span>
+        <strong><T>{workflows[next as keyof typeof workflows].title}</T></strong>
         <span aria-hidden="true">↗</span>
       </a>
     </PageShell>

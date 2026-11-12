@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { T } from "./i18n";
 import { startEntrance } from "@/lib/entrance";
 
 export function Entrance() {
@@ -18,11 +19,11 @@ export function Entrance() {
           <span className="entrance-outline">WAYLINE</span>
           <span className="entrance-fill">WAYLINE</span>
         </div>
-        <p className="entrance-note">Built with you, for the long run.</p>
+        <p className="entrance-note"><T>Built with you, for the long run.</T></p>
         <i className="entrance-progress" />
       </div>
       <button type="button" className="entrance-skip">
-        SKIP INTRO ↗
+        <T>SKIP INTRO ↗</T>
       </button>
     </div>
   );

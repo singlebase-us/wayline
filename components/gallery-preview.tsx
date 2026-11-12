@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLocale } from "./i18n";
 import { scenes } from "@/lib/content";
 
 export function GalleryPreview({ index }: { index: number }) {
+  const { t } = useLocale();
   const rotor = useRef<HTMLSpanElement>(null);
   const animation = useRef<Animation | null>(null);
   const [initial] = useState(index);
@@ -60,7 +62,7 @@ export function GalleryPreview({ index }: { index: number }) {
     <a
       className="gallery-preview"
       href={scene.href}
-      aria-label={`View ${scene.label}`}
+      aria-label={t(scene.label)}
       onPointerMove={(event) => {
         if (
           event.pointerType !== "mouse" ||

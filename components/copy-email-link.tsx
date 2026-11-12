@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "./i18n";
 import { email } from "@/lib/content";
 
 /** Clicking copies the address and shows a small confirmation.
@@ -13,6 +14,7 @@ export function CopyEmailLink({
   label?: string;
   subject?: string;
 }) {
+  const { t } = useLocale();
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
@@ -41,10 +43,10 @@ export function CopyEmailLink({
         </span>
       </a>
       <span className={`copy-pop${copied ? " is-visible" : ""}`} aria-hidden="true">
-        Copied to clipboard
+        {t("Copied to clipboard")}
       </span>
       <span className="sr-only" role="status" aria-live="polite">
-        {copied ? "Email address copied to clipboard" : ""}
+        {copied ? t("Email address copied to clipboard") : ""}
       </span>
     </span>
   );

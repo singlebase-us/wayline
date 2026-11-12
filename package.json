@@ -8,7 +8,8 @@
     "typecheck": "tsc --noEmit",
     "preview": "npx serve out",
     "capture:intro": "node scripts/capture-intro-textures.mjs",
-    "check:intro": "node scripts/check-intro.mjs"
+    "check:intro": "node scripts/check-intro.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs"
   },
   "dependencies": {
     "gsap": "^3.14.2",

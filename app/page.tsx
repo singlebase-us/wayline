@@ -1,33 +1,32 @@
+"use client";
+import { T, useLocale } from "@/components/i18n";
+import { LanguageNav } from "@/components/language-nav";
 import { Experience } from "@/components/experience";
 import { galleryCardsClickable, scenes } from "@/lib/content";
 import { Visual } from "@/components/visual";
 export default function Home() {
+  const { t } = useLocale();
   return (
     <Experience>
       <header className="site-header">
-        <a className="wordmark" href="/" aria-label="WAYLINE home">
+        <a className="wordmark" href="/" aria-label={t("WAYLINE home")}>
           WAYLINE
           <span className="brand-line" />
         </a>
-        <div className="nav-group">
-          <a className="nav-link nav-secondary" href="/services/">
-            SERVICES
-          </a>
-          <a className="nav-link nav-secondary" href="/services/#pricing">
-            PRICING
-          </a>
-          <a className="nav-link" href="/about/">
-            ABOUT US{" "}
+        <LanguageNav>
+          <a className="nav-link nav-secondary" href="/services/"><T>{"SERVICES"}</T></a>
+          <a className="nav-link nav-secondary" href="/services/#pricing"><T>{"PRICING"}</T></a>
+          <a className="nav-link" href="/about/"><T>{"ABOUT US"}</T>{" "}
             <span className="nav-plus" aria-hidden="true">
               +
             </span>
           </a>
-        </div>
+        </LanguageNav>
       </header>
       <main
         id="main"
         className="scene-stage"
-        aria-label="What WAYLINE does"
+        aria-label={t("What WAYLINE does")}
       >
         {scenes.map((scene, i) => (
           <section
@@ -47,7 +46,7 @@ export default function Home() {
                 <h1 id={`title-${scene.id}`}>
                   {scene.title.map((line) => (
                     <span className="title-line" key={line}>
-                      {line}
+                      <T>{line}</T>
                     </span>
                   ))}
                 </h1>
@@ -55,14 +54,14 @@ export default function Home() {
                 <h2 id={`title-${scene.id}`}>
                   {scene.title.map((line) => (
                     <span className="title-line" key={line}>
-                      {line}
+                      <T>{line}</T>
                     </span>
                   ))}
                 </h2>
               )}
-              <p className="scene-description">{scene.description}</p>
+              <p className="scene-description"><T>{scene.description}</T></p>
               <a className="text-link" href={scene.href}>
-                {scene.action}
+                <T>{scene.action}</T>
                 <span aria-hidden="true" className="link-arrow">
                   ↗
                 </span>
@@ -72,7 +71,7 @@ export default function Home() {
               <a
                 className={`visual-link visual-${scene.visual}`}
                 href={scene.href}
-                aria-label={scene.label}
+                aria-label={t(scene.label)}
                 tabIndex={i === 0 ? 0 : -1}
               >
                 <div className="visual-frame">

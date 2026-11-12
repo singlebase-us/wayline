@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "./i18n";
 import { email } from "@/lib/content";
 export function CopyEmail() {
+  const { t } = useLocale();
   const [status, setStatus] = useState("COPY EMAIL");
   const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timeout.current), []);
@@ -18,7 +20,7 @@ export function CopyEmail() {
   }
   return (
     <button className="copy-email" onClick={copy} aria-live="polite">
-      {status}
+      {t(status)}
     </button>
   );
 }
