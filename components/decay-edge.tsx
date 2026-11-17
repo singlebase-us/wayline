@@ -106,11 +106,18 @@ void main() {
   float inside = min(min(view.x, uCard.x - view.x), min(view.y, uCard.y - view.y));
   float rim = 1.0 - smoothstep(0.0, uRim, inside);
 
-  float drift = snoise(vec3(view * 0.004 + uSeed * 0.37, uTime * 0.12)) * 0.5 + 0.5;
-  float idle = uIdle * rim * (0.25 + 0.75 * smoothstep(0.3, 0.8, drift));
-  float scale = uScale * mix(0.2, 1.0, rim) + idle;
+  // Displacement is at most ~0.71 * scale, so pixels farther than that from the
+  // edge can't change: skip the (expensive) noise for the card's interior/far outside.
+  float reach = (uScale + uIdle) * 0.71 + uStrokeWidth + 2.0;
+  float near = abs(box(view - uCard * 0.5, uCard * 0.5));
 
   vec2 offset = vec2(0.0);
+  float scale = 0.0;
+  if (near < reach) {
+    float drift = snoise(vec3(view * 0.004 + uSeed * 0.37, uTime * 0.12)) * 0.5 + 0.5;
+    float idle = uIdle * rim * (0.25 + 0.75 * smoothstep(0.3, 0.8, drift));
+    scale = uScale * mix(0.2, 1.0, rim) + idle;
+  }
   if (scale > 0.01) {
     vec2 p = view * uFrequency + vec2(uSeed * 17.31, uSeed * 9.17);
     float z = uTime * 0.25 + uSeed * 3.1;
@@ -172,6 +179,12 @@ export type DecayEdgeProps = {
   grain?: number;
   /** Baseline decay while the pointer is over the card (0–1). */
   hoverDecay?: number;
+  /** How strongly pointer speed over the card erodes the edge (0–1). */
+  sensitivity?: number;
+  /** Max distance (CSS px) the card drifts toward the cursor. */
+  travel?: number;
+  /** Max tilt (deg) as the cursor moves across the card. */
+  tilt?: number;
   /** Seconds to settle back after the pointer stops. */
   recovery?: number;
   /** Changes the noise pattern so sibling cards don't look identical. */
@@ -186,13 +199,17 @@ export function DecayEdge({
   idle = 18,
   rim = 70,
   grain = 0.012,
-  hoverDecay = 0.15,
+  hoverDecay = 0.2,
+  sensitivity = 0.6,
+  travel = 14,
+  tilt = 1.5,
   recovery = 0.6,
   pattern = 4,
 }: DecayEdgeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const settingsRef = useRef({ fill, stroke, strokeWidth, intensity, idle, rim, grain, hoverDecay, recovery, pattern });
-  settingsRef.current = { fill, stroke, strokeWidth, intensity, idle, rim, grain, hoverDecay, recovery, pattern };
+  const props = { fill, stroke, strokeWidth, intensity, idle, rim, grain, hoverDecay, sensitivity, travel, tilt, recovery, pattern };
+  const settingsRef = useRef(props);
+  settingsRef.current = props;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -251,7 +268,11 @@ export function DecayEdge({
       cursorY: 0,
       lastX: 0,
       lastY: 0,
+      x: 0,
+      y: 0,
+      rotate: 0,
       hovered: false,
+      pointer: false,
       visible: true,
       ratio: 1,
     };
@@ -290,16 +311,45 @@ export function DecayEdge({
       last = now;
       state.time += dt;
 
-      const speed = Math.hypot(state.cursorX - state.lastX, state.cursorY - state.lastY) / dt;
+      // Hover is tested against the card's resting rect (its live rect minus our own
+      // drift), so the card moving under the cursor can't flicker it in and out.
+      const rect = card.getBoundingClientRect();
+      const left = rect.left - state.x;
+      const top = rect.top - state.y;
+      state.hovered =
+        state.pointer &&
+        state.cursorX >= left &&
+        state.cursorX <= left + rect.width &&
+        state.cursorY >= top &&
+        state.cursorY <= top + rect.height;
+
+      const speed = state.hovered
+        ? Math.hypot(state.cursorX - state.lastX, state.cursorY - state.lastY) / dt
+        : 0;
       state.lastX = state.cursorX;
       state.lastY = state.cursorY;
 
-      let wanted = state.hovered ? clamp(speed / 1300, 0, 1) ** 2 : 0;
+      // Pointer speed over this card erodes its edge (Decay Card's "card" scope).
+      let wanted = clamp(speed / (2400 - 2100 * clamp(s.sensitivity, 0, 1)), 0, 1) ** 2;
       if (state.hovered) wanted = Math.max(wanted, s.hoverDecay);
       const tau = wanted > state.level ? 0.08 : Math.max(0.05, s.recovery);
       state.level += (wanted - state.level) * (1 - Math.exp(-dt / tau));
 
-      const settling = Math.abs(wanted - state.level) > 0.002 || speed > 1;
+      // The card leans and drifts toward the cursor, relative to its own center.
+      const nx = state.hovered ? clamp(((state.cursorX - left) / Math.max(1, rect.width)) * 2 - 1, -1, 1) : 0;
+      const ny = state.hovered ? clamp(((state.cursorY - top) / Math.max(1, rect.height)) * 2 - 1, -1, 1) : 0;
+      const follow = 1 - Math.exp(-dt / 0.22);
+      const tx = nx * s.travel;
+      const ty = ny * s.travel;
+      const tr = nx * s.tilt;
+      state.x += (tx - state.x) * follow;
+      state.y += (ty - state.y) * follow;
+      state.rotate += (tr - state.rotate) * follow;
+      const moving =
+        Math.abs(tx - state.x) + Math.abs(ty - state.y) + Math.abs(tr - state.rotate) > 0.01;
+      if (moving || state.x || state.y) card.style.transform = `translate3d(${state.x.toFixed(2)}px, ${state.y.toFixed(2)}px, 0) rotate(${state.rotate.toFixed(3)}deg)`;
+
+      const settling = Math.abs(wanted - state.level) > 0.002 || speed > 1 || moving;
       // Ambient drift only needs ~30fps; pointer response gets every frame.
       tick = (tick + 1) % 2;
       if (settling || tick === 0) draw();
@@ -325,16 +375,17 @@ export function DecayEdge({
     };
 
     const onMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
+      if (!state.pointer) {
+        state.lastX = event.clientX;
+        state.lastY = event.clientY;
+      }
+      state.pointer = true;
       state.cursorX = event.clientX;
       state.cursorY = event.clientY;
     };
-    const onEnter = (event: PointerEvent) => {
-      state.hovered = true;
-      state.cursorX = state.lastX = event.clientX;
-      state.cursorY = state.lastY = event.clientY;
-    };
-    const onLeave = () => {
-      state.hovered = false;
+    const onPageLeave = () => {
+      state.pointer = false;
     };
     const onVisibility = () => wake();
 
@@ -349,9 +400,8 @@ export function DecayEdge({
       }
     });
     intersection.observe(card);
-    card.addEventListener("pointermove", onMove, { passive: true });
-    card.addEventListener("pointerenter", onEnter);
-    card.addEventListener("pointerleave", onLeave);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onPageLeave);
     document.addEventListener("visibilitychange", onVisibility);
     resize();
     wake();
@@ -360,9 +410,9 @@ export function DecayEdge({
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
       intersection.disconnect();
-      card.removeEventListener("pointermove", onMove);
-      card.removeEventListener("pointerenter", onEnter);
-      card.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("pointermove", onMove);
+      card.style.removeProperty("transform");
+      document.documentElement.removeEventListener("pointerleave", onPageLeave);
       document.removeEventListener("visibilitychange", onVisibility);
       delete card.dataset.decayEdge;
       gl.deleteBuffer(buffer);
