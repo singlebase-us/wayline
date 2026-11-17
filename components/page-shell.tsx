@@ -7,12 +7,21 @@ import { CopyEmailLink } from "./copy-email-link";
 export function PageShell({
   children,
   back = "/",
+  backdrop,
 }: {
   children: React.ReactNode;
   back?: string;
+  /** Decorative fixed layer painted behind the page content. */
+  backdrop?: React.ReactNode;
 }) {
   return (
     <div className="editorial-page">
+      {backdrop && (
+        <div className="page-backdrop" aria-hidden="true">
+          {backdrop}
+          <div className="page-backdrop-scrim" />
+        </div>
+      )}
       <header className="site-header detail-header">
         <LocaleLink className="nav-link" href={back}>
           <span aria-hidden="true">←</span><T>{"BACK"}</T></LocaleLink>

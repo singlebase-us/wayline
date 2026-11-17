@@ -3,6 +3,7 @@ import { T, Labelled } from "@/components/i18n";
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 import { FounderContact } from "@/components/founder-contact";
+import { LightPillar } from "@/components/light-pillar";
 import {
   comparison,
   plans,
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function Services() {
   return (
-    <PageShell>
+    <PageShell backdrop={<LightPillar topColor="#6b9ec4" bottomColor="#3d6681" fade={0.4} noiseIntensity={0.35} />}>
       {/* 1 — Positioning */}
       <section className="svc-hero">
         <h1><T>{"A whole team."}</T><br />
