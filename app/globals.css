@@ -2922,3 +2922,23 @@ html[lang="ru"] .scene h1, html[lang="ru"] .scene h2 { font-size: clamp(36px, 5v
     linear-gradient(90deg, #1c1c1cd9 0%, #1c1c1c8c 50%, #1c1c1cd9 100%),
     #1c1c1c40;
 }
+/* Decayed card edges (pricing plans). The canvas takes over the card's surface
+   once WebGL is up; without it the plain CSS background/border stay. */
+.svc-plan {
+  position: relative;
+  isolation: isolate;
+}
+.decay-edge {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  pointer-events: none;
+}
+.svc-plan[data-decay-edge="on"] {
+  background: transparent;
+  border-color: transparent;
+}
+/* The decay canvas bleeds past each card; keep it from widening the page on phones. */
+.svc-pricing {
+  overflow-x: clip;
+}

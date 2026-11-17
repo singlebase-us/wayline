@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 import { FounderContact } from "@/components/founder-contact";
 import { LightPillar } from "@/components/light-pillar";
+import { DecayEdge } from "@/components/decay-edge";
 import {
   comparison,
   plans,
@@ -150,11 +151,17 @@ export default function Services() {
           <em><T>{"Or one built for you."}</T></em>
         </h2>
         <div className="svc-plans">
-          {plans.map((plan) => (
+          {plans.map((plan, i) => (
             <article
               key={plan.name}
               className={`svc-plan${plan.featured ? " is-featured" : ""}`}
             >
+              <DecayEdge
+                pattern={i * 5 + 3}
+                {...(plan.featured
+                  ? { fill: "#3d6681" }
+                  : { fill: "#1c1c1cb3", stroke: "#ffffff40" })}
+              />
               <header>
                 <h3><T>{plan.name}</T></h3>
               </header>
